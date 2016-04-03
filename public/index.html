@@ -1,13 +1,13 @@
 <!doctype html>
 
 <!-- ASSIGN OUR ANGULAR MODULE -->
-<html ng-app="scotchTodo">
+<html ng-app="emerilsFood">
 <head>
 	<!-- META -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
 
-	<title>Node/Angular Todo App</title>
+	<title>Emerils Food Truck</title>
 
 	<!-- SCROLLS -->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
@@ -15,8 +15,8 @@
 	<style>
 		html 					{ overflow-y:scroll; }
 		body 					{ padding-top:50px; }
-		#todo-list 				{ margin-bottom:30px; }
-		#todo-form 	 			{ margin-bottom:50px; }
+		#food-list 				{ margin-bottom:30px; }
+		#food-form 	 			{ margin-bottom:50px; }
 	</style>
 
 	<!-- SPELLS -->
@@ -27,25 +27,18 @@
 	<script src="js/core.js"></script> <!-- load our main application -->
 
 </head>
-<!-- SET THE CONTROLLER -->
-<body ng-controller="mainController">
-	<div class="container">
 
+<!-- SET THE CONTROLLER -->
+<body onload="" ng-controller="mainController">
+	<div class="container">
 		<!-- HEADER AND TODO COUNT -->
 		<div class="jumbotron text-center">
-			<h1>I'm a Todo-aholic <span class="label label-info">{{ todos.length }}</span></h1>
+			<h1>Emerils Menu</h1>
 		</div>
 
-		<!-- TODO LIST -->
-		<div id="todo-list" class="row">
-			<div class="col-sm-4 col-sm-offset-4">
-
-				
-
-				<!-- LOOP OVER THE TODOS IN $scope.todos -->
-				<div class="checkbox" ng-repeat="todo in todos">
+		<!-- <div class="checkbox" ng-repeat="food in foods">
 					<label>
-						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
+						<input type="checkbox" ng-click="deleteFood(food._id)"> {{ food.food_name }}
 					</label>
 				</div>
 
@@ -53,31 +46,33 @@
 					<span class="fa fa-spinner fa-spin fa-3x"></span>
 				</p>
 
+			</div> -->
+		
+		<div id="food-form" class="row"  data-ng-init="createFood()">
+			<form>
+					
+				<!-- LOOP OVER THE TODOS IN $scope.todos -->
+				<div class="col-sm-4 col-sm-offset-4" ng-repeat="food in foods">
+					<label>
+						<li class="form-control input-lg text-center">{{food.food_name}}</li>
+						<li np-change="total()" class="form-control input-lg text-center">{{food.food_price}}</li>
+						<input type="text" class="form-control input-lg text-center"  ng-model="food.food_quantity" placeholder="Quantity">
+					</label></br></br></br>
+
+				
+				</div>
+					<span >Total: {{total()}}</span>
+			</form>
+
+		</div>
+
+		<!-- <div class="form-group">
+				<input type="text" class="form-control input-lg text-center" placeholder="Food Item" ng-model="formData.food_name"><br>
+				<input type="text" class="form-control input-lg text-center" placeholder="Food Description" ng-model="formData.food_desc"><br>
+				<input type="text" class="form-control input-lg text-center" placeholder="Food Price" ng-model="formData.food_price"><br>
+				<button type="submit" class="btn btn-primary btn-lg" ng-click="createFood()">Add</button>
 			</div>
-		</div>
-
-		<!-- FORM TO CREATE TODOS -->
-		<div id="todo-form" class="row">
-			<div class="col-sm-8 col-sm-offset-2 text-center">
-				<form>
-					<div class="form-group">
-
-						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="I want to buy a puppy that will love me forever" ng-model="formData.text">
-					</div>
-
-					<!-- createToDo() WILL CREATE NEW TODOS -->
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
-				</form>
-			</div>
-		</div>
-
-		<div class="text-center text-muted">
-			<p>A demo by <a href="http://scotch.io">Scotch</a>.</p>
-			<p>Read the <a href="http://scotch.io/tutorials/javascript/creating-a-single-page-todo-app-with-node-and-angular">tutorial</a>.</p>
-		</div>
-
+	 -->
 	</div>
-
 </body>
 </html>
